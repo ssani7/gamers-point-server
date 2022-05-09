@@ -30,6 +30,12 @@ const run = async () => {
             res.send(result);
         })
 
+        app.delete('/gpu/:id', async (req, res) => {
+            const id = req.params.id;
+            const result = await gpuCollection.deleteOne({ _id: ObjectId(id) });
+            res.send(result)
+        })
+
         app.put('/restock/:id', async (req, res) => {
             const id = req.params.id;
             const updatedGpu = req.body;
