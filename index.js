@@ -29,6 +29,12 @@ const run = async () => {
             const result = await gpuCollection.findOne({ _id: ObjectId(id) });
             res.send(result);
         })
+        app.get('/mygpu/:email', async (req, res) => {
+            const email = req.params.email;
+            const cursor = gpuCollection.find({ email: email });
+            const result = await cursor.toArray();
+            res.send(result);
+        })
 
         app.post('/gpu', async (req, res) => {
             const product = req.body;
